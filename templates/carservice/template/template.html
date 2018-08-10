@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block scripts %}{% endblock %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+<div id="wrapper">
+	 <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'carservice:index'%}"> DichVuThueXe</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>{{ user.username }}</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading"><strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ user.username}} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{% url 'carservice:logout' %}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                	<li class="{% if request.resolver_match.url_name == 'index' %} active{% endif %}">
+                        <a href="{% url 'carservice:index' %}"><i class="fa fa-fw fa-dashboard"></i> Trang chủ</a>
+                    </li>
+                    <li class="{% if 'car' in request.resolver_match.url_name %} active{% endif %}">
+                        <a href="{% url 'carservice:car' %}"><i class="fa fa-car" aria-hidden="true"></i> Quản lý xe</a>
+                    </li>
+                    <li class="{% if 'schedule' in request.resolver_match.url_name %} active{% endif %}">
+                        <a href="{% url 'carservice:schedule' %}"><i class="fa fa-calendar"></i> Lịch trình</a>
+                    </li>
+                    <li class="{% if 'statistical_car' in request.resolver_match.url_name %} active{% endif %}">
+                        <a href="{% url 'carservice:statistical_car' %}"> <i class="fa fa-area-chart" aria-hidden="true"></i>
+                 Dịch vụ xe</a>
+                    </li>
+                    <li class="{% if 'cost' in request.resolver_match.url_name  %} active{% endif %}">
+                        <a href="{% url 'carservice:statistical_income' %}"><i class="fa fa-bar-chart" aria-hidden="true"></i>
+                 Chi phí</a>
+                    </li>
+                    <li class="{% if 'driver' in request.resolver_match.url_name %} active{% endif %}">
+                        <a href="{% url 'carservice:driver' %}"><i class="fa fa-male fa-lg" aria-hidden="true"></i> Quản lý tài xế</a>
+                    </li>
+                    
+                    <li class="{% if 'album' in request.resolver_match.url_name %} active{% endif %}">
+                        <a href="{% url 'carservice:album' %}"><i class="fa fa-camera" aria-hidden="true"></i> Quản lý ảnh</a>
+                    </li>
+
+                    <li  class="{% if 'content' in request.resolver_match.url_name %} active{% endif %}">
+                        <a href="{% url 'carservice:content' %}"><i class="fa fa-th-list" aria-hidden="true"></i> Nội dung web</a>
+                    </li>
+
+                    <li  class="{% if 'customer' in request.resolver_match.url_name %} active{% endif %}">
+                        <a href="{% url 'carservice:customer' %}"><i class="fa fa-user-md" aria-hidden="true"></i> Khách hàng</a>
+                    </li>
+
+                    <li  class="{% if 'blog' in request.resolver_match.url_name %} active{% endif %}">
+                        <a href="{% url 'carservice:blog' %}"><i class="fa fa-file-text" aria-hidden="true"></i> Bài blog</a>
+                    </li>
+                    
+
+                </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+            	{% block contenter %}
+
+        		{% endblock %}
+            </div>
+
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+</div>
+{% endblock %}

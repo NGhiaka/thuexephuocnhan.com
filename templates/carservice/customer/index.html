@@ -1,0 +1,57 @@
+{% extends 'carservice/customer/template.html' %}
+
+{% block title %} Nội dung trang web {% endblock %}
+
+
+{% block navibase %}
+    <li>
+        <i class="fa fa-dashboard"></i> Khách hàng</a>
+    </li>
+    <li class="active">
+        <i class="fa fa-table"></i> chi tiết
+    </li>
+{% endblock %}
+                
+{% block contain %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">Danh sách các xe của dịch vụ du lịch <strong>Phước Nhân</strong></div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr class="bg-primary">
+                        <th>STT</th>
+                        <th>Tên khách hàng</th>
+                        <th>Số Điện Thoại</th>
+                        <th>Địa chỉ</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%  if object_list %}
+                        {%  for customer in object_list %}
+                            <tr>
+                                <th>{{ customer.id }}</th>
+                                <th>{{ customer.cName}}</th>
+                                <th>{{ customer.cPhone}}</th>
+                                <th>{{ customer.cAddress}}</th>
+                                <th style="text-align: center;">
+
+                                    <a href="{% url 'carservice:customer_detail' customer.id%}" alt="Xem chi tiết"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
+
+                                    <a href="{% url 'carservice:customer_edit' customer.id%}" alt="Chỉnh sửa thông tint"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+
+                                    <a href="{% url 'carservice:customer_delete' customer.id%}" alt="Xóa"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                                </th>
+                            </tr>
+                        {%  endfor %}
+                        
+                    {%  endif%}
+                   
+                </tbody>
+            </table>    
+            
+            
+        </div>
+    </div>
+    <a href="{% url 'carservice:customer_new'%}">Thêm khách hàng mới +</a>
+{% endblock %}
